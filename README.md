@@ -1,15 +1,18 @@
-#Run with 
+# Run with
 `docker-compose up`
 
-#Database commands
+# Database commands
 Run from api_server container
 `docker-compose exec api_server bash`
 
-##Setup
+## Setup
 `diesel setup`
 
-##New migration
+## New migration
 Generate:
+
 `diesel migration generate {name}`
+
 Apply:
+
 `diesel migration run`
