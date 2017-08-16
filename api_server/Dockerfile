@@ -28,16 +28,6 @@ RUN set -eux; \
 
 ## end of the official image
 
-
-# diesel dependencies
-RUN apt-get update && \
-    apt-get install \
-        make \
-        libpq5 \
-        libpq-dev \
-        -qqy \
-        --no-install-recommends
-
 RUN cargo install diesel_cli --no-default-features --features postgres
 
 RUN cargo install cargo-watch
