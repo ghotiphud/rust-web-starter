@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  web:
+    build: ./web
+    volumes:
+      - ./web:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: yarn start
+    links:
+      - api_server
+
+  api_server:
+    build: ./api_server
+    ports: 
+      - "3001:3001"
+    volumes:
+      - ./api_server:/usr/src/app
+    working_dir: /usr/src/app
+    links:
+      - db
+    command: cargo watch -x run
+
+  db:
+    image: "postgres:9"
+    ports: 
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_PASSWORD: supersecretpassword
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+# cargo will try to redownload packages @ docker-compose up so store them here.
+volumes:
+  pgdata: {}
