@@ -21,7 +21,8 @@ mod pg_pool;
 pub use pg_pool::DbConn;
 
 mod schema;
-// mod models;
+mod models;
+mod posts;
 
 use dotenv::dotenv;
 use std::env;
@@ -40,5 +41,9 @@ fn main() {
     rocket::ignite()
         .manage(pg_pool::init(&database_url))
         .mount("/api", routes![index])
+        .mount(
+            "/api/post",
+            routes![posts::index, posts::create, posts::publish, posts::delete],
+        )
         .launch();
 }
