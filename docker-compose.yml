@@ -20,6 +20,9 @@ services:
     working_dir: /usr/src/app
     links:
       - db
+    # diesel infer_schema macro gives warnings with this flag.
+    # environment:
+    #   - CARGO_INCREMENTAL=1
     command: cargo watch -x run
 
   db:
