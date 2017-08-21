@@ -28,7 +28,7 @@ use std::env;
 
 #[get("/")]
 fn index() -> &'static str {
-    "Hello, world!"
+    "Hello, from Rust!"
 }
 
 fn main() {

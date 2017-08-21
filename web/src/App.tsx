@@ -1,9 +1,23 @@
-import * as React from 'react';
-import './App.css';
+import * as React from "react";
+import "./App.css";
 
-const logo = require('./logo.svg');
+const logo = require("./logo.svg");
 
-class App extends React.Component {
+class App extends React.Component<{}, { api_message: string }> {
+  constructor() {
+    super();
+
+    this.state = { api_message: "" };
+  }
+
+  componentDidMount() {
+    fetch("/api").then(r => r.text()).then(api_message => {
+      this.setState({
+        api_message
+      });
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,6 +27,9 @@ class App extends React.Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <p>
+          {this.state.api_message}
         </p>
       </div>
     );
