@@ -10,7 +10,7 @@ class App extends React.Component<{}, { api_message: string }> {
     this.state = { api_message: "" };
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     fetch("/api").then(r => r.text()).then(api_message => {
       this.setState({
         api_message
@@ -18,7 +18,7 @@ class App extends React.Component<{}, { api_message: string }> {
     });
   }
 
-  render() {
+  public render() {
     return (
       <div className="App">
         <div className="App-header">
