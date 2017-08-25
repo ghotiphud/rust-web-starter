@@ -49,6 +49,7 @@ I like to use a couple terminals (tabbed) one to run the containers and watch st
 Examples of useful commands.
 
 * `docker-compose exec api_server bash`
+    * `cargo upgrade`
     * `diesel setup`
     * `diesel migration generate {name}`
     * `diesel migration run`
@@ -64,3 +65,7 @@ Examples of useful commands.
 A small example of Rocket & Diesel usage can be found in `/api_server/src/posts.rs` on [this branch](https://github.com/ghotiphud/rust-web-starter/tree/diesel_blog).
 
 Calling the api from React can be seen in `/web/src/App.tsx`
+
+# Troubleshooting
+
+If Rocket ever fails to build with an error concerning nightly version date, this can be fixed by rebuilding the docker container with the latest nightly `docker-compose build --no-cache api_server`.
