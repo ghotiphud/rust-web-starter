@@ -18,6 +18,8 @@ docker-compose up
 
 Open [http://localhost:3000](http://localhost:3000) (or `{docker ip}:3000` on windows) to view it in the browser.
 
+NOTE: If you're on windows you may get an error about bash/r, this has to do with line endings which can be fixed by `git config --global core.autocrlf false` then cloning again which will clone with unix line endings... Not sure if this is the best answer.
+
 The page will reload if you make edits in the `/web` folder.
 
 The api server will restart if you make edits in the `/api_server` folder.

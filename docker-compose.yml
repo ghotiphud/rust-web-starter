@@ -7,7 +7,7 @@ services:
       - ./web:/usr/src/app
     ports:
       - "3000:3000"
-    command: yarn start
+    command: bash -c "yarn && yarn start"
     links:
       - api_server
 
