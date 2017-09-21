@@ -35,7 +35,8 @@ After you've tried it out a bit, feel free to steal it! Just remember where it c
 rm -rf .git
 # init new repo
 git init
-git commit -a -m "initial commit of template from https://github.com/ghotiphud/rust-web-starter.git"
+git add .
+git commit -m "initial commit of template from https://github.com/ghotiphud/rust-web-starter.git"
 ```
 
 # Workflow
