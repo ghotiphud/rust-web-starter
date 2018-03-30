@@ -2,16 +2,18 @@
 #![plugin(rocket_codegen)]
 
 extern crate rocket;
+#[allow(unused)]
 #[macro_use]
 extern crate rocket_contrib;
 
+#[allow(unused)]
 #[macro_use]
 extern crate serde_derive;
 
 #[macro_use]
 extern crate diesel;
 #[macro_use]
-extern crate diesel_codegen;
+extern crate diesel_infer_schema;
 extern crate dotenv;
 extern crate lazy_static;
 extern crate r2d2;
@@ -32,7 +34,6 @@ fn index() -> &'static str {
 }
 
 fn main() {
-    // initialize env
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
