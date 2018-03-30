@@ -4,8 +4,8 @@ import "./App.css";
 const logo = require("./logo.svg");
 
 class App extends React.Component<{}, { api_message: string }> {
-  constructor() {
-    super();
+  constructor(props: object) {
+    super(props);
 
     this.state = { api_message: "" };
   }
