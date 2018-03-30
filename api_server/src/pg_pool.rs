@@ -37,7 +37,6 @@ impl Deref for DbConn {
 }
 
 pub fn init(database_url: &str) -> Pool {
-    let config = r2d2::Config::default();
     let manager = ConnectionManager::<PgConnection>::new(database_url);
-    r2d2::Pool::new(config, manager).expect("Failed to create pool.")
+    r2d2::Pool::new(manager).expect("Failed to create pool.")
 }
