@@ -12,8 +12,8 @@ extern crate serde_derive;
 extern crate diesel;
 #[macro_use]
 extern crate diesel_codegen;
-extern crate lazy_static;
 extern crate dotenv;
+extern crate lazy_static;
 extern crate r2d2;
 extern crate r2d2_diesel;
 
