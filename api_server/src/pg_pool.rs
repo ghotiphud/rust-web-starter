@@ -1,14 +1,14 @@
-use r2d2;
 use diesel::pg::PgConnection;
+use r2d2;
 use r2d2_diesel::ConnectionManager;
 
 type ManagedPgConn = ConnectionManager<PgConnection>;
 type Pool = r2d2::Pool<ManagedPgConn>;
 
-use std::ops::Deref;
 use rocket::http::Status;
 use rocket::request::{self, FromRequest};
-use rocket::{Request, State, Outcome};
+use rocket::{Outcome, Request, State};
+use std::ops::Deref;
 /// Db Connection request guard type: wrapper around r2d2 pooled connection
 pub struct DbConn(pub r2d2::PooledConnection<ManagedPgConn>);
 
@@ -37,7 +37,6 @@ impl Deref for DbConn {
 }
 
 pub fn init(database_url: &str) -> Pool {
-    let config = r2d2::Config::default();
     let manager = ConnectionManager::<PgConnection>::new(database_url);
-    r2d2::Pool::new(config, manager).expect("Failed to create pool.")
+    r2d2::Pool::new(manager).expect("Failed to create pool.")
 }
