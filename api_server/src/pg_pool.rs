@@ -1,6 +1,6 @@
 use diesel::pg::PgConnection;
 use r2d2;
-use r2d2_diesel::ConnectionManager;
+use diesel::r2d2::ConnectionManager;
 
 type ManagedPgConn = ConnectionManager<PgConnection>;
 type Pool = r2d2::Pool<ManagedPgConn>;

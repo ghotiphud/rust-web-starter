@@ -12,12 +12,9 @@ extern crate serde_derive;
 
 #[macro_use]
 extern crate diesel;
-#[macro_use]
-extern crate diesel_infer_schema;
 extern crate dotenv;
 extern crate lazy_static;
 extern crate r2d2;
-extern crate r2d2_diesel;
 
 mod pg_pool;
 pub use pg_pool::DbConn;
