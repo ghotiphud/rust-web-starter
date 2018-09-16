@@ -27,7 +27,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for DbConn {
     }
 }
 
-// For the convenience of using an &DbConn as an &SqliteConnection.
+// For the convenience of using an &DbConn as an &PgConnection.
 impl Deref for DbConn {
     type Target = PgConnection;
 
