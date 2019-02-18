@@ -1,42 +1,30 @@
-#![feature(plugin)]
-#![plugin(rocket_codegen)]
+#![feature(proc_macro_hygiene, decl_macro)]
 
+#[macro_use]
 extern crate rocket;
-#[allow(unused)]
+
 #[macro_use]
 extern crate rocket_contrib;
 
-#[allow(unused)]
-#[macro_use]
-extern crate serde_derive;
-
-#[macro_use]
+// #[macro_use]
 extern crate diesel;
-extern crate dotenv;
-extern crate lazy_static;
-extern crate r2d2;
-
-mod pg_pool;
-pub use pg_pool::DbConn;
 
 mod schema;
 // mod models;
 
-use dotenv::dotenv;
-use std::env;
+use rocket_contrib::databases::diesel::PgConnection;
 
 #[get("/")]
 fn index() -> &'static str {
     "Hello, from Rust!"
 }
 
+#[database("rustydb")]
+pub struct RustyDbConn(PgConnection);
+
 fn main() {
-    dotenv().ok();
-
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-
     rocket::ignite()
-        .manage(pg_pool::init(&database_url))
+        .attach(RustyDbConn::fairing())
         .mount("/api", routes![index])
         .launch();
 }
