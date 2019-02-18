@@ -7,15 +7,20 @@ class App extends React.Component<{}, { apiMessage: string }> {
   constructor(props: object) {
     super(props);
 
-    this.state = { apiMessage: "" };
+    this.state = { apiMessage: "Loading... (If this takes too long, the database might be down.)" };
   }
 
   public componentDidMount() {
-    fetch("/api").then(r => r.text()).then(apiMessage => {
-      this.setState({
-        apiMessage
-      });
-    });
+    fetch("/api")
+      .then(r => r.status === 500
+        ? `(The server reported an error or cannot be reached. Is it compiling...?)`
+        : r.text()
+      )
+      .then(apiMessage =>
+        this.setState({
+          apiMessage
+        })
+      );
   }
 
   public render() {
