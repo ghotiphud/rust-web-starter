@@ -15,8 +15,10 @@ mod schema;
 use rocket_contrib::databases::diesel::PgConnection;
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, from Rust!"
+fn index(_db_conn: RustyDbConn) -> &'static str {
+    // Rocket uses the RustyDbConn request guard to provide us with a database
+    // connection from a managed pool.
+    "Hello, from Rust! (with a database connection!)"
 }
 
 #[database("rustydb")]
